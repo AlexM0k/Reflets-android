@@ -48,8 +48,14 @@ public class StartActivity extends Activity implements OnHeaderTaskListener, OnI
 		if (result){
 			mArticles = headers;
 			
-			// Saving in cache
-			DataCache.save(this, mArticles);
+			new Thread( new Runnable() {
+				
+				public void run() {
+					// Saving in cache
+					DataCache.save(StartActivity.this, mArticles);		
+				}
+			}).start();
+			
 		}
 		else {
 			// Setting error message wheter there is connectivity or not

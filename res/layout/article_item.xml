@@ -57,13 +57,20 @@
             
         </LinearLayout>
         
+        <ImageView
+            android:id="@+id/article_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/image" />
+        
         <ProgressBar
             android:id="@+id/article_progress" 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_marginTop="20dp"
 		    style="@android:style/Widget.ProgressBar.Inverse"/>
-		       
+		
 	    <TextView 
 	        android:id="@+id/article_content"
 	        android:layout_width="fill_parent"

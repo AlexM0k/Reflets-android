@@ -4,9 +4,13 @@ import info.reflets.app.model.Article;
 
 import java.util.ArrayList;
 
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import android.util.Log;
 
 public class ArticleParser extends DefaultHandler{
 
@@ -78,7 +82,25 @@ public class ArticleParser extends DefaultHandler{
 			buffer = null;
 		}
 		else if (localName.equalsIgnoreCase(CONTENT) && insideItem){
+			
 			this.currentEntry.setContent(buffer.toString());
+			
+			// Parsing fisrt image
+			try {
+				HtmlCleaner cleaner = new HtmlCleaner();
+				TagNode root = cleaner.clean( this.currentEntry.getContent());
+
+				Object[] images = root.evaluateXPath( "//img" );
+
+				if (images.length > 0 && images[0] instanceof TagNode){
+					this.currentEntry.setImage(((TagNode)images[0]).getAttributeByName("src"));
+				}
+
+				
+			} catch (Exception e) {
+				Log.d("Parsing", e.getMessage());
+			}
+			
 			buffer = null;
 		}
 		else if (localName.equalsIgnoreCase(ITEM)){
@@ -96,4 +118,6 @@ public class ArticleParser extends DefaultHandler{
 		String lecture = new String(ch,start,length);
 		if(buffer != null) buffer.append(lecture);
 	}
+	
+
 }

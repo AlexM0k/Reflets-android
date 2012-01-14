@@ -67,14 +67,12 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 			InputStream stream = response.getEntity().getContent();
 		
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-			SAXParser parser = null;
+			SAXParser parser = factory.newSAXParser();
 			
-			parser = factory.newSAXParser();
 			ArticleParser handler = new ArticleParser();
-			
 			parser.parse(stream, handler);
-			mArticles = handler.getArticles();
 			
+			mArticles = handler.getArticles();
 			
 		}
 		catch (ClientProtocolException e){

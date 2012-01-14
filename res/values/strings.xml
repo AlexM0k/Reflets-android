@@ -7,6 +7,7 @@
     <string name="loading">Chargement...</string>
     <string name="refresh">Recharger</string>
     <string name="by">By : </string>
+    <string name="image">image</string>
     
     <string name="error_generic">Une erreur s\'est produite, veuillez re essayer plus tard.</string>
     <string name="error_no_network">Le réseau n\'est pas accessible, veuillez essayer plus tard.</string>

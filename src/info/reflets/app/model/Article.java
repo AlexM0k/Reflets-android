@@ -21,6 +21,7 @@ public class Article implements Parcelable {
 	String 		mDescription;
 	String		mAuthor;
 	String		mContent;
+	String 		mImage;
 	
 	public Article(){}
 	
@@ -61,6 +62,12 @@ public class Article implements Parcelable {
 	public void setContent(String mContent) {
 		this.mContent = mContent;
 	}
+	public String getImage() {
+		return mImage;
+	}
+	public void setImage(String mImage) {
+		this.mImage = mImage;
+	}
 	
 	public int describeContents() {
 		return 0;
@@ -74,6 +81,7 @@ public class Article implements Parcelable {
 		dest.writeString(mDescription);
 		dest.writeString(mAuthor);
 		dest.writeString(mContent);	
+		dest.writeString(mImage);	
 	}
 	
 	public Article(Parcel in){
@@ -86,6 +94,7 @@ public class Article implements Parcelable {
 		mDescription 	= in.readString();
 		mAuthor			= in.readString();
 		mContent		= in.readString();
+		mImage			= in.readString();
 	}
 	
 	public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {
