@@ -11,13 +11,7 @@
         android:padding="10dp"
         android:gravity="center_horizontal"
         android:background="@android:color/white">
-        
-        <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo"
-            android:layout_marginBottom="20dp"
-            android:contentDescription="@string/app_logo"/>
+                
         
         <TextView 
 	        android:id="@+id/article_title"
@@ -57,7 +51,7 @@
             
         </LinearLayout>
         
-        <ImageView
+        <info.reflets.app.utils.ImageAdvancedView
             android:id="@+id/article_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

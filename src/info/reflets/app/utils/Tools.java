@@ -6,8 +6,12 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -57,5 +61,11 @@ public class Tools {
 	            .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
 	    return (info != null && info.isConnected());
+	}
+	
+	public static Bitmap openContactPhotoInputStream(Context context, Uri contactUri) {
+		
+		return BitmapFactory.decodeStream(ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), contactUri));
+		
 	}
 }

@@ -5,11 +5,17 @@
     android:background="@android:color/white"
     android:orientation="horizontal">
     
-    
+    <info.reflets.app.utils.ImageAdvancedView
+        android:id="@+id/header_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:padding="5dp"
+        android:visibility="gone" 
+        android:scaleType="fitCenter"/>
+
 	<LinearLayout 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_weight="1"
 	    android:paddingLeft="5dp"
 	    android:paddingRight="5dp"
 	    android:background="@android:color/white"
@@ -65,15 +71,6 @@
 	        android:ellipsize="end"/>
 	    
 	</LinearLayout>
-	
-	<ImageView 
-        android:id="@+id/header_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:padding="5dp"
-        android:contentDescription="@string/image"
-        android:visibility="visible" 
-        android:scaleType="fitCenter"/>
 	
 </LinearLayout>
 	

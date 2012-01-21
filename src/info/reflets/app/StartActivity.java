@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class StartActivity extends Activity implements OnHeaderTaskListener, OnItemClickListener {
     
 	final static String LOG_TAG = StartActivity.class.getSimpleName();
-	List<Article> mArticles;
+	public static List<Article> mArticles;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,7 +114,7 @@ public class StartActivity extends Activity implements OnHeaderTaskListener, OnI
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		
 		Intent articleIntent = new Intent(this, ArticleActivity.class);
-		articleIntent.putExtra(ArticleActivity.EXTRA_ARTICLE, mArticles.get(position));
+		articleIntent.putExtra(ArticleActivity.EXTRA_ARTICLE_POSITION, position);
 		
 		startActivity(articleIntent);
 	}
