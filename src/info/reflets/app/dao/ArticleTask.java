@@ -73,6 +73,7 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 			parser.parse(stream, handler);
 			
 			mArticles = handler.getArticles();
+			mArticles = DataCache.getMergedList(mContext, mArticles);
 			
 		}
 		catch (ClientProtocolException e){
