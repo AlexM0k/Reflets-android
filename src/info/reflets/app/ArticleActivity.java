@@ -50,10 +50,11 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 
 	public void onDisplayView(int position, View ConvertView) {
 		
-		mArrowLeft.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out));
-		mArrowRight.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out));
-		mArrowLeft.setVisibility(View.INVISIBLE);
-		mArrowRight.setVisibility(View.INVISIBLE);
+		if (position < StartActivity.mArticles.size() - 1) 
+			mArrowRight.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out));		
+		
+		if (position > 0)
+			mArrowLeft.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out));
 
 	}
 

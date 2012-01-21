@@ -37,7 +37,7 @@ public class ImageAdvancedView extends FrameLayout
 
 	private String				mDownloadingUrl			= null;
 	private String				mAlternativeUrl			= null;
-	private ImageCache 		mLoaderCache			= null;
+	private ImageCache 			mImageCache			= null;
 	private Bitmap				mBitmapNotFound 		= null;
 	private boolean				mBitmapGone				= false;
 	private boolean				mBitmapInvisible		= false;
@@ -64,11 +64,11 @@ public class ImageAdvancedView extends FrameLayout
 		BITMAP_NOT_FOUND.clear();
 	}
 	
-	public static ImageCache getLoaderCache(Context ctx){
-		return getLoaderCache(ctx, null);
+	public static ImageCache getImageCache(Context ctx){
+		return getImageCache(ctx, null);
 	}
 	
-	public static ImageCache getLoaderCache(Context ctx, String cache){
+	public static ImageCache getImageCache(Context ctx, String cache){
 		if (cache == null){
 			cache = "cacheDefault";
 		}
@@ -98,7 +98,7 @@ public class ImageAdvancedView extends FrameLayout
 	public static void loadUrls(final Context ctx, final List<String> listUrls, final String cache, final LoadUrlsListener listener){
 		new Thread(new Runnable() {
 			public void run() {
-				ImageCache lc = getLoaderCache(ctx, cache);
+				ImageCache lc = getImageCache(ctx, cache);
 				Bitmap bm;
 
 				for(String url : listUrls){
@@ -200,7 +200,7 @@ public class ImageAdvancedView extends FrameLayout
 			final String imageUrl, final String imageLoading, final String imageNotFound,
 			final String cacheTag, final String scaleType, final String gravity)
 	{
-		mLoaderCache = getLoaderCache(context, cacheTag);
+		mImageCache = getImageCache(context, cacheTag);
 		
 		if (imageLoading != null){
 			int resLoading = context.getResources().getIdentifier(imageLoading, "drawable", context.getPackageName());
@@ -323,7 +323,7 @@ public class ImageAdvancedView extends FrameLayout
 		
 		if (imageUrl.startsWith("file:///")) {
 			
-			Bitmap bmp = mLoaderCache.get(imageUrl);
+			Bitmap bmp = mImageCache.get(imageUrl);
 			
 			if (bmp ==  null){
 				bmp = BitmapFactory.decodeFile(imageUrl.replace("file:///", "/"));
@@ -332,7 +332,7 @@ public class ImageAdvancedView extends FrameLayout
 					bmp = mBitmapNotFound;
 				}
 				else{
-					mLoaderCache.put(imageUrl, bmp);
+					mImageCache.put(imageUrl, bmp);
 				}
 				
 			}
@@ -431,7 +431,7 @@ public class ImageAdvancedView extends FrameLayout
 
 		mSpinner.setVisibility(View.INVISIBLE);
 		mDownloadingUrl = null;
-		mLoaderCache.removeHandler(handler);
+		mImageCache.removeHandler(handler);
 
 		if (bitmap == null){
 			return;
@@ -527,7 +527,7 @@ public class ImageAdvancedView extends FrameLayout
 			}
 		}
 		
-		Bitmap bitmapCached = mLoaderCache.getBitmap(imageUrl, mAlternativeUrl, handler);
+		Bitmap bitmapCached = mImageCache.getBitmap(imageUrl, mAlternativeUrl, handler);
 		if (bitmapCached != null){
 			displayImage(bitmapCached);
 		}

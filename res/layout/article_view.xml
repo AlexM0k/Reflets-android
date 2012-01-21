@@ -30,7 +30,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/arrow_left"/>
+        android:src="@drawable/arrow_left"
+        android:visibility="invisible"/>
     
     <ImageView 
         android:id="@+id/arrow_right"
@@ -39,6 +40,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:src="@drawable/arrow_right"/>
+        android:src="@drawable/arrow_right"
+        android:visibility="invisible"/>
     
 </RelativeLayout>
