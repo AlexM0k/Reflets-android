@@ -45,9 +45,9 @@ public class DataCache {
 		
 	}
 
-	public static List<Article> getMergedList(Context context, List<Article> list){
+	public static ArrayList<Article> getMergedList(Context context, ArrayList<Article> list){
 			// Loading actual cache
-			List<Article> cache = load(context);
+			ArrayList<Article> cache = load(context);
 			
 			// If cache is not empty merging new data with cache
 			if (cache.size() > 0)
@@ -87,8 +87,8 @@ public class DataCache {
 	 * @param context
 	 * @return
 	 */
-	public static List<Article> load(Context context){
-		List<Article> list = new ArrayList<Article>();
+	public static ArrayList<Article> load(Context context){
+		ArrayList<Article> list = new ArrayList<Article>();
 		
 		try {
 			FileInputStream stream = context.openFileInput(CACHE_FILE);

@@ -453,28 +453,6 @@ public class ImageAdvancedView extends FrameLayout
 		}
 	}
 	
-	public void setImageProxy(final String imageUrl, int defaultW, int defaultH)
-	{
-		if (!checkUrl(imageUrl)) {
-			return;
-		}
-		
-		int imageW = mImage.getMeasuredWidth();
-		int imageH = mImage.getMeasuredHeight();
-
-		if (imageW == 0)	imageW = defaultW;
-		if (defaultH == 0)	imageH = defaultH;
-
-		if (imageW == 0 && imageH == 0){
-			setImage(imageUrl);
-		}
-		else{
-
-			setImage(imageUrl);
-
-		}
-	}
-	
 	
 	public void setImage(final CharSequence imageUrl){
 		if (imageUrl == null) {

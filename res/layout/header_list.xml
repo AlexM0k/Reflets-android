@@ -16,7 +16,7 @@
     <View 
         android:layout_width="fill_parent"
         android:layout_height="3dp"
-        android:background="@color/grey"/>
+        android:background="@color/orange"/>
     
     <ListView 
         android:id="@+id/header_list"

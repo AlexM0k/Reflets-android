@@ -7,7 +7,7 @@ import info.reflets.app.dao.DataCache;
 import info.reflets.app.model.Article;
 import info.reflets.app.utils.Tools;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class StartActivity extends Activity implements OnHeaderTaskListener, OnItemClickListener {
     
 	final static String LOG_TAG = StartActivity.class.getSimpleName();
-	public static List<Article> mArticles;
+	ArrayList<Article> mArticles;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class StartActivity extends Activity implements OnHeaderTaskListener, OnI
 	/***
 	 * Listener triggered when articles have been downloaded
 	 */
-	public void onDownloaded(boolean result, List<Article> headers) {
+	public void onDownloaded(boolean result, ArrayList<Article> headers) {
 		
 		// If success
 		if (result){
@@ -115,7 +115,7 @@ public class StartActivity extends Activity implements OnHeaderTaskListener, OnI
 		
 		Intent articleIntent = new Intent(this, ArticleActivity.class);
 		articleIntent.putExtra(ArticleActivity.EXTRA_ARTICLE_POSITION, position);
-		
+		articleIntent.putParcelableArrayListExtra(ArticleActivity.EXTRA_ARTICLE_LIST, mArticles);
 		startActivity(articleIntent);
 	}
 }

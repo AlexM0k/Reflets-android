@@ -8,7 +8,7 @@ import info.reflets.app.utils.Tools;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -26,14 +26,14 @@ import android.os.AsyncTask;
 public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 
 	public interface OnHeaderTaskListener {
-		public void onDownloaded(boolean result, List<Article> headers);
+		public void onDownloaded(boolean result, ArrayList<Article> headers);
 	}
 	
 	Context 		mContext;
 	
 	boolean 		mShowDialog = false;
 	ProgressDialog 	mDialog;
-	List<Article> 	mArticles;
+	ArrayList<Article> 	mArticles;
 	
 	OnHeaderTaskListener		mCallback;
 	

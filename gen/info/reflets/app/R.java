@@ -24,7 +24,8 @@ public final class R {
         public static final int empty=0x7f020002;
         public static final int logo=0x7f020003;
         public static final int reflets_icon=0x7f020004;
-        public static final int separator=0x7f020005;
+        public static final int selector_text_color=0x7f020005;
+        public static final int separator=0x7f020006;
     }
     public static final class id {
         public static final int arrow_left=0x7f080008;
@@ -58,9 +59,10 @@ public final class R {
     public static final class string {
         public static final int app_logo=0x7f060001;
         public static final int app_name=0x7f060000;
+        public static final int arrow=0x7f060006;
         public static final int by=0x7f060004;
-        public static final int error_generic=0x7f060006;
-        public static final int error_no_network=0x7f060007;
+        public static final int error_generic=0x7f060007;
+        public static final int error_no_network=0x7f060008;
         public static final int image=0x7f060005;
         public static final int loading=0x7f060002;
         public static final int refresh=0x7f060003;

@@ -8,6 +8,7 @@
     <string name="refresh">Recharger</string>
     <string name="by">By : </string>
     <string name="image">image</string>
+    <string name="arrow">swipe</string>
     
     <string name="error_generic">Une erreur s\'est produite.</string>
     <string name="error_no_network">Le réseau n\'est pas accessible.</string>

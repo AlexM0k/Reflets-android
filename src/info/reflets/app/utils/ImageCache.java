@@ -621,8 +621,7 @@ public final class ImageCache extends AbstractMap<String, SoftReference<Bitmap>>
 	    Bitmap				bmp			= null;
 	    
 	    try {
-			
-			
+						
 	        url = new URL(imageUrl);
 			connection = (HttpURLConnection)url.openConnection();
 	        connection.setDoInput(true);

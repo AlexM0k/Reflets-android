@@ -20,6 +20,8 @@
         android:id="@+id/pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@id/logo"
         android:visibility="visible"/>
     
@@ -29,8 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="3dp"
         android:src="@drawable/arrow_left"
+        android:contentDescription="@string/arrow"
         android:visibility="invisible"/>
     
     <ImageView 
@@ -39,8 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="3dp"
         android:src="@drawable/arrow_right"
+        android:contentDescription="@string/arrow"
         android:visibility="invisible"/>
     
 </RelativeLayout>

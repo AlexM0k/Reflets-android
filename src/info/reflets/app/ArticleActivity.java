@@ -1,5 +1,7 @@
 package info.reflets.app;
 
+import java.util.List;
+
 import info.reflets.app.model.Article;
 import info.reflets.app.utils.HorizontalPager;
 import info.reflets.app.utils.HorizontalPager.OnScreenSwitchListener;
@@ -25,7 +27,10 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 
 	final static String LOG_TAG = ArticleActivity.class.getSimpleName();
 	
-	public final static String EXTRA_ARTICLE_POSITION = "EXTRA_ARTICLE_POSITON";
+	public final static String EXTRA_ARTICLE_POSITION 	= "EXTRA_ARTICLE_POSITON";
+	public final static String EXTRA_ARTICLE_LIST		= "EXTRA_ARTICLE_LIST";
+	
+	List<Article>	mArticles;
 	
 	HorizontalPager mPager;
 	ImageView		mArrowLeft;
@@ -36,11 +41,13 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.article_view);
 		
+		mArticles = getIntent().getParcelableArrayListExtra(EXTRA_ARTICLE_LIST);
+		
 		mArrowLeft = (ImageView) findViewById(R.id.arrow_left);
 		mArrowRight = (ImageView) findViewById(R.id.arrow_right);
 		
 		mPager = (HorizontalPager) findViewById(R.id.pager);
-		mPager.setNbChild(0, StartActivity.mArticles.size());
+		mPager.setNbChild(0, mArticles.size());
 		mPager.setOnScreenSwitchListener(this, getIntent().getIntExtra(EXTRA_ARTICLE_POSITION, 0));
 	}
 
@@ -50,7 +57,7 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 
 	public void onDisplayView(int position, View ConvertView) {
 		
-		if (position < StartActivity.mArticles.size() - 1) 
+		if (position < mArticles.size() - 1) 
 			mArrowRight.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out));		
 		
 		if (position > 0)
@@ -59,7 +66,7 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 	}
 
 	public View getView(int position, View ConvertView) {
-		final Article article = StartActivity.mArticles.get(position);
+		final Article article = mArticles.get(position);
 		
 		View articleView  = View.inflate(this, R.layout.article_item, null);
 		
