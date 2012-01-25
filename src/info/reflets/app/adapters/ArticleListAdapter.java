@@ -13,6 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/***
+ * Adapter for the main list
+ * @author Alexandre
+ *
+ */
 public class ArticleListAdapter extends ArrayAdapter<Article> {
 
 	private LayoutInflater	mLayoutInflater;
@@ -24,6 +29,10 @@ public class ArticleListAdapter extends ArrayAdapter<Article> {
 		mLayoutInflater = LayoutInflater.from(activity);
 	}
 	
+	/***
+	 * Adding articles
+	 * @param headers
+	 */
 	public void addHeaders(List<Article> headers){
 		clear();
 		

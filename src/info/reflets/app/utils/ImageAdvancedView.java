@@ -2,7 +2,6 @@ package info.reflets.app.utils;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import android.app.ActivityManager;
@@ -81,44 +80,15 @@ public class ImageAdvancedView extends FrameLayout
 				mRAM = mi.availMem / 1048576L;				
 				mLowMemoryHandset = (mRAM <= 100);
 
-				Log.d(LOG_TAG, "RAM = " + mRAM + " mLowMemoryHandset = " + mLowMemoryHandset);
 			}
 
 			int cacheMax = mLowMemoryHandset ? 0 : (int)mRAM;
-
-			Log.d(LOG_TAG, "create cache = " + cache + " cacheMax = " + cacheMax);
 
 			mCACHE = new ImageCache(ctx, cache, cacheMax);
 		}
 		
 		return mCACHE;
 	}
-
-	
-	public static void loadUrls(final Context ctx, final List<String> listUrls, final String cache, final LoadUrlsListener listener){
-		new Thread(new Runnable() {
-			public void run() {
-				ImageCache lc = getImageCache(ctx, cache);
-				Bitmap bm;
-
-				for(String url : listUrls){
-					bm = lc.get(url);
-					if (bm == null){
-						bm = ImageCache.getBitmapFromUrl(url);
-						lc.putBitmap(url, bm);
-					}
-				}
-				
-				if (listener != null){
-					listener.onLoadEnd();
-				}
-			}
-		}).start();
-	}
-	
-    public static interface LoadUrlsListener {
-    	public void onLoadEnd();
-    }
 
 
     /**

@@ -23,6 +23,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+/***
+ * Asynchrneous task retrieving remote articles
+ * @author Alexandre
+ *
+ */
 public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 
 	public interface OnHeaderTaskListener {
@@ -31,8 +36,11 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 	
 	Context 		mContext;
 	
+	// A waiting dialog is shown
 	boolean 		mShowDialog = false;
 	ProgressDialog 	mDialog;
+	
+	// Article list
 	ArrayList<Article> 	mArticles;
 	
 	OnHeaderTaskListener		mCallback;
@@ -66,6 +74,7 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 			HttpResponse response = httpclient.execute(httpGet);
 			InputStream stream = response.getEntity().getContent();
 		
+			// Parsing
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			SAXParser parser = factory.newSAXParser();
 			

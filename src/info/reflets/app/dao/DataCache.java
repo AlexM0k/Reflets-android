@@ -16,6 +16,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+/***
+ * Class to put articles in cache, and retrieve them
+ * @author Alexandre
+ *
+ */
 public class DataCache {
 
 	private final static String CACHE_FILE = "reflets.cache";
@@ -45,15 +50,21 @@ public class DataCache {
 		
 	}
 
+	/***
+	 * Merging current list with cache
+	 * @param context
+	 * @param list
+	 * @return
+	 */
 	public static ArrayList<Article> getMergedList(Context context, ArrayList<Article> list){
 			// Loading actual cache
 			ArrayList<Article> cache = load(context);
 			
 			// If cache is not empty merging new data with cache
 			if (cache.size() > 0)
-				merge(cache, list);
-			else
-				cache = list;
+				merge(list, cache);
+
+			cache = list;
 			
 			return cache;
 	}

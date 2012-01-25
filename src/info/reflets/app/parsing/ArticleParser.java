@@ -12,6 +12,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import android.util.Log;
 
+/***
+ * Parser
+ * @author Alexandre
+ *
+ */
 public class ArticleParser extends DefaultHandler{
 
 	private final static String ITEM 		= "item";
