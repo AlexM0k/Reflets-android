@@ -68,6 +68,9 @@ public class Article implements Parcelable {
 	public void setImage(String mImage) {
 		this.mImage = mImage;
 	}
+	public String getShareDescription(){
+		return this.mTitle + " " + this.mLink;
+	}
 	
 	public int describeContents() {
 		return 0;

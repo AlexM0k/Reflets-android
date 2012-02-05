@@ -1,5 +1,6 @@
 package info.reflets.app.utils;
 
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -50,6 +51,20 @@ public class Tools {
 		return calendar;
 	}
 	
+	public static String urlEncode(String url){
+
+		try {
+			if (url.contains("/")) {
+				String newUrl;
+				int leftBound = url.lastIndexOf("/");
+				newUrl = url.subSequence(0, leftBound+1).toString();
+				newUrl += URLEncoder.encode(url.subSequence(leftBound+1, url.length()).toString());
+				return newUrl;
+			}
+		}
+		catch (Exception e) {}
+		return url;
+	}
 	/***
 	 * True if network is available, otherwise false
 	 * @param context

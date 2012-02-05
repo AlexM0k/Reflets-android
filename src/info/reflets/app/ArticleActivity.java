@@ -1,18 +1,23 @@
 package info.reflets.app;
 
-import java.util.List;
-
 import info.reflets.app.model.Article;
 import info.reflets.app.utils.HorizontalPager;
 import info.reflets.app.utils.HorizontalPager.OnScreenSwitchListener;
 import info.reflets.app.utils.ImageAdvancedView;
+
+import java.util.List;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Html.ImageGetter;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -31,7 +36,7 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 	public final static String EXTRA_ARTICLE_LIST		= "EXTRA_ARTICLE_LIST";
 	
 	List<Article>	mArticles;
-	
+	int				mCurrentPosition;
 	HorizontalPager mPager;
 	ImageView		mArrowLeft;
 	ImageView		mArrowRight;
@@ -46,16 +51,54 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 		mArrowLeft = (ImageView) findViewById(R.id.arrow_left);
 		mArrowRight = (ImageView) findViewById(R.id.arrow_right);
 		
+		mCurrentPosition = getIntent().getIntExtra(EXTRA_ARTICLE_POSITION, 0);
+		
 		mPager = (HorizontalPager) findViewById(R.id.pager);
 		mPager.setNbChild(0, mArticles.size());
-		mPager.setOnScreenSwitchListener(this, getIntent().getIntExtra(EXTRA_ARTICLE_POSITION, 0));
+		mPager.setOnScreenSwitchListener(this, mCurrentPosition);
 	}
 
+	/***
+	 * Setting the menu
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menu_inflater = getMenuInflater();
+		menu_inflater.inflate(R.menu.article_menu, menu);
+		return true;
+	}
+
+	/***
+	 * Defining menu behaviour
+	 */
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+
+		// Refreshing
+		case R.id.menu_share :
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("text/plain");
+			intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name) + mArticles.get(mCurrentPosition).getTitle());
+			
+			intent.putExtra(Intent.EXTRA_TEXT   , mArticles.get(mCurrentPosition).getShareDescription());
+			
+			try {
+			    startActivity(Intent.createChooser(intent, getString(R.string.share)));
+			} catch (android.content.ActivityNotFoundException ex) {
+			   
+			}
+			break;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+	
 	public void onExitView(int position, View ConvertView) {
 		
 	}
 
 	public void onDisplayView(int position, View ConvertView) {
+		mCurrentPosition = position;
 		
 		if (position < mArticles.size() - 1) 
 			mArrowRight.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out));		

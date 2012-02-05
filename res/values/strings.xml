@@ -6,6 +6,7 @@
 
     <string name="loading">Chargement...</string>
     <string name="refresh">Recharger</string>
+    <string name="share">Partager</string>
     <string name="by">By : </string>
     <string name="image">image</string>
     <string name="arrow">swipe</string>

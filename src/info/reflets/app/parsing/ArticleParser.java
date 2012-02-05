@@ -1,6 +1,7 @@
 package info.reflets.app.parsing;
 
 import info.reflets.app.model.Article;
+import info.reflets.app.utils.Tools;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class ArticleParser extends DefaultHandler{
 
 	private final static String ITEM 		= "item";
 	private final static String TITLE 		= "title";
-	private final static String LINK 		= "link";
+	private final static String LINK 		= "guid";
 	private final static String PUBDATE		= "pubdate";
 	private final static String DESCRIPTION = "description";
 	private final static String CREATOR 	= "creator";
@@ -98,7 +99,8 @@ public class ArticleParser extends DefaultHandler{
 				Object[] images = root.evaluateXPath( "//img" );
 
 				if (images.length > 0 && images[0] instanceof TagNode){
-					this.currentEntry.setImage(((TagNode)images[0]).getAttributeByName("src"));
+					String url = ((TagNode)images[0]).getAttributeByName("src");
+					this.currentEntry.setImage(Tools.urlEncode(url));
 				}
 
 				
