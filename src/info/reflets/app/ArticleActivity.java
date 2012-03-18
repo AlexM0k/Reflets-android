@@ -1,10 +1,13 @@
 package info.reflets.app;
 
+import info.reflets.app.dao.CommentTask.OnCommentTaskListener;
 import info.reflets.app.model.Article;
+import info.reflets.app.model.Comment;
 import info.reflets.app.utils.HorizontalPager;
 import info.reflets.app.utils.HorizontalPager.OnScreenSwitchListener;
 import info.reflets.app.utils.ImageAdvancedView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -28,7 +31,7 @@ import android.widget.TextView;
  * Article activity
  *
  */
-public class ArticleActivity extends Activity implements OnScreenSwitchListener, ImageGetter  {
+public class ArticleActivity extends Activity implements OnScreenSwitchListener, ImageGetter, OnCommentTaskListener  {
 
 	final static String LOG_TAG = ArticleActivity.class.getSimpleName();
 	
@@ -89,6 +92,10 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 			   
 			}
 			break;
+			
+//		case R.id.menu_comments : 
+//			new CommentTask(this, mArticles.get(mCurrentPosition).getCommentUrl(), true, this).execute();
+//			break;
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
@@ -149,6 +156,14 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 	 */
 	public Drawable getDrawable(String source) {
 		return getResources().getDrawable(R.drawable.empty);
+	}
+
+	public void onCommentsDownloaded(boolean result, ArrayList<Comment> comments) {
+		CommentActivity.comments = comments;
+		
+		Intent intent = new Intent(this, CommentActivity.class);
+		intent.putExtra(CommentActivity.EXTRA_TITLE, mArticles.get(mCurrentPosition).getTitle());
+		startActivity(intent);
 	}
 	
 	

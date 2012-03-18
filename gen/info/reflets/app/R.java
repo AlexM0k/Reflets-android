@@ -36,23 +36,29 @@ public final class R {
         public static final int article_image=0x7f080003;
         public static final int article_progress=0x7f080004;
         public static final int article_title=0x7f080000;
-        public static final int header_author=0x7f08000d;
-        public static final int header_date=0x7f08000c;
-        public static final int header_description=0x7f08000e;
-        public static final int header_image=0x7f08000a;
-        public static final int header_list=0x7f08000f;
-        public static final int header_title=0x7f08000b;
+        public static final int comment_content=0x7f08000c;
+        public static final int comment_date=0x7f08000b;
+        public static final int comment_list=0x7f08000d;
+        public static final int comment_title=0x7f08000a;
+        public static final int header_author=0x7f080011;
+        public static final int header_date=0x7f080010;
+        public static final int header_description=0x7f080012;
+        public static final int header_image=0x7f08000e;
+        public static final int header_list=0x7f080013;
+        public static final int header_title=0x7f08000f;
         public static final int logo=0x7f080006;
-        public static final int menu_refresh=0x7f080011;
-        public static final int menu_share=0x7f080010;
+        public static final int menu_refresh=0x7f080015;
+        public static final int menu_share=0x7f080014;
         public static final int pager=0x7f080007;
     }
     public static final class layout {
         public static final int article_item=0x7f030000;
         public static final int article_view=0x7f030001;
-        public static final int header_item=0x7f030002;
-        public static final int header_list=0x7f030003;
-        public static final int splash=0x7f030004;
+        public static final int comment_item=0x7f030002;
+        public static final int comment_list=0x7f030003;
+        public static final int header_item=0x7f030004;
+        public static final int header_list=0x7f030005;
+        public static final int splash=0x7f030006;
     }
     public static final class menu {
         public static final int article_menu=0x7f070000;
@@ -61,11 +67,12 @@ public final class R {
     public static final class string {
         public static final int app_logo=0x7f060001;
         public static final int app_name=0x7f060000;
-        public static final int arrow=0x7f060007;
-        public static final int by=0x7f060005;
-        public static final int error_generic=0x7f060008;
-        public static final int error_no_network=0x7f060009;
-        public static final int image=0x7f060006;
+        public static final int arrow=0x7f060008;
+        public static final int by=0x7f060006;
+        public static final int comments=0x7f060005;
+        public static final int error_generic=0x7f060009;
+        public static final int error_no_network=0x7f06000a;
+        public static final int image=0x7f060007;
         public static final int loading=0x7f060002;
         public static final int refresh=0x7f060003;
         public static final int share=0x7f060004;

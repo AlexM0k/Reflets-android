@@ -22,8 +22,10 @@ public class Article implements Parcelable {
 	String		mAuthor;
 	String		mContent;
 	String 		mImage;
+	String		mCommentUrl;
 	
-	public Article(){}
+	public Article(){
+	}
 	
 	public String getTitle() {
 		return mTitle;
@@ -72,6 +74,14 @@ public class Article implements Parcelable {
 		return this.mTitle + " " + this.mLink;
 	}
 	
+	public String getCommentUrl() {
+		return mCommentUrl;
+	}
+
+	public void setCommentUrll(String mCommentUrl) {
+		this.mCommentUrl = mCommentUrl;
+	}
+
 	public int describeContents() {
 		return 0;
 	}
@@ -85,6 +95,7 @@ public class Article implements Parcelable {
 		dest.writeString(mAuthor);
 		dest.writeString(mContent);	
 		dest.writeString(mImage);	
+		dest.writeString(mCommentUrl);
 	}
 	
 	public Article(Parcel in){
@@ -98,6 +109,7 @@ public class Article implements Parcelable {
 		mAuthor			= in.readString();
 		mContent		= in.readString();
 		mImage			= in.readString();
+		mCommentUrl		= in.readString();
 	}
 	
 	public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {

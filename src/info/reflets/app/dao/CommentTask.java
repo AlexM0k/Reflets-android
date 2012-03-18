@@ -1,10 +1,8 @@
 package info.reflets.app.dao;
 
-
 import info.reflets.app.R;
-import info.reflets.app.model.Article;
-import info.reflets.app.parsing.ArticleParser;
-import info.reflets.app.utils.Tools;
+import info.reflets.app.model.Comment;
+import info.reflets.app.parsing.CommentParser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,15 +18,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-/***
- * Asynchrneous task retrieving remote articles
- * @author Alexandre
- *
- */
-public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
+public class CommentTask extends AsyncTask<Void, Void, Boolean>{
 
-	public interface OnHeaderTaskListener {
-		public void onDownloaded(boolean result, ArrayList<Article> headers);
+	public interface OnCommentTaskListener {
+		public void onCommentsDownloaded(boolean result, ArrayList<Comment> comments);
 	}
 	
 	Context 		mContext;
@@ -37,12 +30,16 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 	boolean 		mShowDialog = false;
 	ProgressDialog 	mDialog;
 	
-	// Article list
-	ArrayList<Article> 	mArticles;
+	// Comments list
+	ArrayList<Comment> 	mComments;
 	
-	OnHeaderTaskListener		mCallback;
+	// Comments Url
+	String mUrl;
 	
-	public ArticleTask(Context context, boolean showDialog, OnHeaderTaskListener callback){
+	OnCommentTaskListener		mCallback;
+	
+	public CommentTask(Context context, String url, boolean showDialog, OnCommentTaskListener callback){
+		mUrl		= url;
 		mContext 	= context;
 		mShowDialog = showDialog;
 		mCallback	= callback;
@@ -62,20 +59,20 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		
+		
 		try {
-			URL serverAddress = new URL(Tools.RSS_URL);
+			URL serverAddress = new URL(mUrl);
 			URLConnection connection = serverAddress.openConnection();
 			connection.connect();
-			
+		
 			// Parsing
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			SAXParser parser = factory.newSAXParser();
 			
-			ArticleParser handler = new ArticleParser();
+			CommentParser handler = new CommentParser();
 			parser.parse(connection.getInputStream(), handler);
 			
-			mArticles = handler.getArticles();
-			mArticles = DataCache.getMergedList(mContext, mArticles);
+			mComments = handler.getComments();			
 			
 		}
 		catch (ClientProtocolException e){
@@ -96,7 +93,7 @@ public class ArticleTask extends AsyncTask<Void, Void, Boolean> {
 			mDialog.dismiss();
 		
 		if (mCallback != null)
-			mCallback.onDownloaded(result, mArticles);
+			mCallback.onCommentsDownloaded(result, mComments);
 	}
 
 }
