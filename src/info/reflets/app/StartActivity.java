@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +40,14 @@ public class StartActivity extends Activity implements OnHeaderTaskListener, OnI
         new ArticleTask(this, false, this).execute();
     }
 
+    @Override  
+    public void startManagingCursor(Cursor c) {  
+     if (c == null) {  
+      throw new IllegalStateException("cannot manage cursor: cursor == null");  
+     }  
+     super.startManagingCursor(c);  
+    }  
+    
 	/***
 	 * Listener triggered when articles have been downloaded
 	 */

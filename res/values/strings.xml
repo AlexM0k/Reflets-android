@@ -5,6 +5,7 @@
     <string name="app_logo">Reflets.info</string>
 
     <string name="loading">Chargement...</string>
+    <string name="loading_comments">Chargement des commentaires...</string>
     <string name="refresh">Recharger</string>
     <string name="share">Partager</string>
     <string name="comments">Commentaires</string>

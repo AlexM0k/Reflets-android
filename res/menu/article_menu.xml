@@ -6,8 +6,8 @@
 		  android:icon="@android:drawable/ic_menu_share"
 		  android:title="@string/share"/>
 	
-<!-- 	<item android:id="@+id/menu_comments"  -->
-<!-- 		  android:icon="@android:drawable/ic_menu_info_details" -->
-<!-- 		  android:title="@string/comments"/> -->
+	<item android:id="@+id/menu_comments" 
+		  android:icon="@drawable/comment_icon"
+		  android:title="@string/comments"/>
 		  		  
 </menu>

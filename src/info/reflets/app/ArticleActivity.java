@@ -1,5 +1,6 @@
 package info.reflets.app;
 
+import info.reflets.app.dao.CommentTask;
 import info.reflets.app.dao.CommentTask.OnCommentTaskListener;
 import info.reflets.app.model.Article;
 import info.reflets.app.model.Comment;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
@@ -61,6 +63,14 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 		mPager.setOnScreenSwitchListener(this, mCurrentPosition);
 	}
 
+	@Override  
+    public void startManagingCursor(Cursor c) {  
+     if (c == null) {  
+      throw new IllegalStateException("cannot manage cursor: cursor == null");  
+     }  
+     super.startManagingCursor(c);  
+    }  
+	
 	/***
 	 * Setting the menu
 	 */
@@ -93,9 +103,9 @@ public class ArticleActivity extends Activity implements OnScreenSwitchListener,
 			}
 			break;
 			
-//		case R.id.menu_comments : 
-//			new CommentTask(this, mArticles.get(mCurrentPosition).getCommentUrl(), true, this).execute();
-//			break;
+		case R.id.menu_comments : 
+			new CommentTask(this, mArticles.get(mCurrentPosition).getCommentUrl(), true, this).execute();
+			break;
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}

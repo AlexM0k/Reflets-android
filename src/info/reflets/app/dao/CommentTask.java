@@ -51,7 +51,7 @@ public class CommentTask extends AsyncTask<Void, Void, Boolean>{
 		if (mShowDialog){
 			mDialog = new ProgressDialog(mContext);
 			mDialog.setCancelable(false);
-			mDialog.setMessage(mContext.getString(R.string.loading));
+			mDialog.setMessage(mContext.getString(R.string.loading_comments));
 			mDialog.show();
 		}
 	}
